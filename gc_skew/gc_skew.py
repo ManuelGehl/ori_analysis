@@ -26,10 +26,12 @@ def plot_skew(skew_array: list) -> None:
     plt.plot(skew_array)
     plt.show()
 
+def min_max_skew(skew_array: list) -> list, list:
+    # Calculate minimum and maximum values of GC skew
+    minimum_skew = min(skew_array)
+    maximum_skew = max(skew_array)
+    # Determines all positions where the skew is minimum and maximum
+    minimum_positions = [index for index in range(len(skew_array)) if skew_array[index] == minimum_skew]
+    maximum_positions = [index for index in range(len(skew_array)) if skew_array[index] == maximum_skew]
     
-    
-    
-
-#minimum = min(skew_array)
-#minimum_indices = [index for index in range(len(skew_array)) if skew_array[index] == minimum]
-#print(minimum_indices)
+    return minimum_positions, maximum_positions
