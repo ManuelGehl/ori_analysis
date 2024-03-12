@@ -9,6 +9,10 @@ def generate_direct_neighbours(sequence: str) -> list:
 
     Returns:
     - list: A list containing the input sequence and its direct neighbors.
+    
+    Example:
+    >>> generate_direct_neighbours(sequence="ATG")
+    ['ATG', 'TTG', 'GTG', 'CTG', 'AAG', 'AGG', 'ACG', 'ATA', 'ATT', 'ATC']
     """
     nucleotide_list = ["A", "T", "G", "C"]
     # Initialize direct neighbours with sequence
@@ -34,10 +38,14 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
 
     Parameters:
     - sequence (str): The input DNA sequence.
-    - distance (int): The distance to determine the size of the neighborhood.
+    - distance (int): The maximum hamming distance of all neighbours relative to the input sequence.
 
     Returns:
     - list: A list containing the input sequence and its d-neighbors within the specified distance.
+    
+    Example:
+    >> generate_d_neighbourhood(sequence="AT")
+    ['AG', 'CG', 'GA', 'TC', 'GG', 'AA', 'AT', 'GT', 'CT', 'CC', 'AC', 'GC', 'TG', 'CA', 'TA', 'TT']
     """
     # Initialize neighbourhood
     neighbourhood = [sequence]
