@@ -9,14 +9,14 @@ def generate_k_mers(sequence: str, k_mer_length: int, seq_range: tuple = (0, 100
     # Define scanning range
     scanning_range = len(sequence_part) - k_mer_length + 1
     
-    k_mer_list = []
+    k_mers = set()
     # Slide a window over the sequence part
     for pos in range(scanning_range):
         # Add current k-mer to list
-        k_mer_list.append(sequence_part[pos:pos + k_mer_length])
+        k_mers.add(sequence_part[pos:pos + k_mer_length])
     
-    # Remove duplicates
-    k_mer_list = list(set(k_mer_list))
+    # Convert set to list
+    k_mers = list(k_mers)
     
-    return k_mer_list
+    return k_mers
         
