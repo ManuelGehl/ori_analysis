@@ -1,7 +1,9 @@
-def generate_k_mers(sequence: str, k_mer_length: int, range: tuple = (0, 100)) -> list:
+def generate_k_mers(sequence: str, k_mer_length: int, seq_range: tuple = (0, 100)) -> list:
     
     # Define part of sequence to generate k-mers from
-    start, stop = range
+    start, stop = seq_range
+    # Check if sequence range lies within the sequence
+    # TO DO
     sequence_part = sequence[start:stop + 1]
     
     # Define scanning range
@@ -11,7 +13,7 @@ def generate_k_mers(sequence: str, k_mer_length: int, range: tuple = (0, 100)) -
     # Slide a window over the sequence part
     for pos in range(scanning_range):
         # Add current k-mer to list
-        k_mer_list.append(sequence[pos:pos + k_mer_length])
+        k_mer_list.append(sequence_part[pos:pos + k_mer_length])
     
     # Remove duplicates
     k_mer_list = list(set(k_mer_list))
