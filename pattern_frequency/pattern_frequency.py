@@ -1,9 +1,19 @@
 from hamming_distance import hamming_distance
 
 def generate_direct_neighbours(sequence: str) -> list:
+    """
+    Generates direct neighbors of a given DNA sequence.
+
+    Parameters:
+    - sequence (str): The input DNA sequence.
+
+    Returns:
+    - list: A list containing the input sequence and its direct neighbors.
+    """
     nucleotide_list = ["A", "T", "G", "C"]
     # Initialize direct neighbours with sequence
     direct_neighbours = [sequence]
+    
     # Loop trough every nucleotide in sequence
     for position, nucleotide in enumerate(sequence):
         # Generate list of possible nucleotides to exchange at each position
@@ -19,6 +29,16 @@ def generate_direct_neighbours(sequence: str) -> list:
     return direct_neighbours
 
 def generate_d_neighbourhood(sequence: str, distance: int) -> list:
+    """
+    Generates a d-neighborhood of a given DNA sequence.
+
+    Parameters:
+    - sequence (str): The input DNA sequence.
+    - distance (int): The distance to determine the size of the neighborhood.
+
+    Returns:
+    - list: A list containing the input sequence and its d-neighbors within the specified distance.
+    """
     # Initialize neighbourhood
     neighbourhood = [sequence]
     if distance == 0:
@@ -40,7 +60,17 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
     return neighbourhood
  
 def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold: int) -> dict:
-    
+    """
+    Approximates the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
+
+    Parameters:
+    - sequence (str): The input DNA sequence.
+    - pattern_length (int): The length of the patterns to be considered.
+    - threshold (int): The Hamming distance threshold for pattern matching.
+
+    Returns:
+    - dict: A dictionary where keys are patterns and values are their approximate frequencies in the sequence.
+    """
     # Initialize frequency dictionary
     frequency_dict = {}
     
@@ -67,6 +97,15 @@ def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold:
     return frequency_dict
 
 def most_frequent_patterns(frequency_dict: dict) -> list:
+    """
+    Finds the most frequent patterns in a dictionary of pattern frequencies.
+
+    Parameters:
+    - frequency_dict (dict): A dictionary where keys are patterns and values are their frequencies.
+
+    Returns:
+    - list: A list containing the most frequent patterns.
+    """
     # Determine maximum occurence in dictionary
     max_value = max(frequency_dict.values())
     patterns = []
@@ -78,6 +117,15 @@ def most_frequent_patterns(frequency_dict: dict) -> list:
     return patterns
 
 def reverse_complement(sequence: str) -> str:
+    """
+    Generates the reverse complement of a DNA sequence.
+
+    Parameters:
+    - sequence (str): The input DNA sequence.
+
+    Returns:
+    - str: The reverse complement of the input sequence.
+    """
     # Return sequence
     sequence = sequence[::-1]
     
@@ -86,16 +134,22 @@ def reverse_complement(sequence: str) -> str:
                     "T": "A",
                     "G": "C",
                     "C": "G"}
-    # Define empy list
-    complement_seq = []
-        
     # Map characters in sequence
-    for char in sequence:
-        complement_seq.append(mapping_dict[char])
+    complement_seq = [mapping_dict[char] for char in sequence]
     
     return "".join(complement_seq)
 
 def frequency_merge(frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
+    """
+    Merges two dictionaries of pattern frequencies.
+
+    Parameters:
+    - frequency_dict_1 (dict): The first dictionary of pattern frequencies.
+    - frequency_dict_2 (dict): The second dictionary of pattern frequencies.
+
+    Returns:
+    - dict: A dictionary containing the merged pattern frequencies.
+    """
     # Initialzie empty dictionary
     merged_frequencies = {}
     # Loop trough the union of patterns
