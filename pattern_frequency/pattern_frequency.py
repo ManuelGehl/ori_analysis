@@ -69,7 +69,8 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
  
 def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold: int) -> dict:
     """
-    Approximates the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
+    Determines the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
+    Pattern occurences are also count for similar (within threshold Hamming distance) but not identical patterns.
 
     Parameters:
     - sequence (str): The input DNA sequence.
@@ -77,7 +78,7 @@ def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold:
     - threshold (int): The Hamming distance threshold for pattern matching.
 
     Returns:
-    - dict: A dictionary where keys are patterns and values are their approximate frequencies in the sequence.
+    - dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
     """
     # Initialize frequency dictionary
     frequency_dict = {}
