@@ -1,4 +1,4 @@
-from hamming_distance import hamming_distance
+from pattern_frequency import hamming_distance
 
 def generate_direct_neighbours(sequence: str) -> list:
     """
