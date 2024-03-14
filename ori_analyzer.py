@@ -1,4 +1,4 @@
-from sequence import read_sequence
+from functions.sequence import read_sequence
 
 class OriAnalyzer():
     
