@@ -1,4 +1,5 @@
 from functions.sequence import read_sequence
+from functions.gc_skew import calculate_gc_skew, plot_skew, min_max_skew
 
 class OriAnalyzer():
     
@@ -16,3 +17,12 @@ class OriAnalyzer():
             str: DNA sequence string.
         """
         return read_sequence(input_path=input_path)
+    
+    def calculate_gc_skew(self, sequence: str):
+        return calculate_gc_skew(sequence=sequence)
+    
+    def plot_skew(self, skew_array: list) -> None:
+        plot_skew(skew_array=skew_array)
+
+    def min_max_skew(self, skew_array: list) -> list:
+        return min_max_skew(skew_array=skew_array)
