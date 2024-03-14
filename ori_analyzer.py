@@ -80,7 +80,7 @@ class OriAnalyzer():
         - str: The reverse complement of the input sequence.
         """
         return reverse_complement(sequence=sequence)
- 
+    
     def pattern_frequency(self, sequence: str, pattern_length: int, threshold: int) -> dict:
         """
         Determines the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
@@ -108,7 +108,7 @@ class OriAnalyzer():
         """
         return most_frequent_patterns(frequency_dict=frequency_dict)
 
-    def frequency_merge(frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
+    def frequency_merge(self, frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
         """
         Merges two dictionaries of pattern frequencies.
 
