@@ -1,7 +1,8 @@
-from functions.sequence import read_sequence
-from functions.gc_skew import calculate_gc_skew, plot_skew, min_max_skew
-from functions.generate_k_mers import generate_k_mers
-from functions.pattern_frequency import reverse_complement, approximate_pattern_frequency, frequency_merge, most_frequent_patterns
+from functions.sequence import read_sequence as read_seq_func
+from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as plot_skew_func, min_max_skew as min_max_skew_func
+from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
+from functions.pattern_frequency import reverse_complement as rev_complement_func, approximate_pattern_frequency as pattern_freq_func
+from functions.pattern_frequency import frequency_merge as merge_func, most_frequent_patterns as most_frequent_func
 
 class OriAnalyzer():
     
@@ -18,7 +19,7 @@ class OriAnalyzer():
         Returns:
             str: DNA sequence string.
         """
-        return read_sequence(input_path=input_path)
+        return read_seq_func(input_path=input_path)
     
     def calculate_gc_skew(self, sequence: str):
         """
@@ -30,7 +31,7 @@ class OriAnalyzer():
         Returns:
         - list: List of GC skew scores.
         """
-        return calculate_gc_skew(sequence=sequence)
+        return gc_skew_func(sequence=sequence)
     
     def plot_skew(self, skew_array: list) -> None:
         """
@@ -39,7 +40,7 @@ class OriAnalyzer():
         Parameters:
         - skew_array (list): List of GC skew scores.
         """
-        plot_skew(skew_array=skew_array)
+        plot_skew_func(skew_array=skew_array)
 
     def min_max_skew(self, skew_array: list) -> list:
         """
@@ -52,7 +53,7 @@ class OriAnalyzer():
         - list: Positions where the skew is minimum.
         - list: Positions where the skew is maximum.
         """
-        return min_max_skew(skew_array=skew_array)
+        return min_max_skew_func(skew_array=skew_array)
     
     def generate_k_mers(self, sequence: str, k_mer_length: int, seq_range: tuple = (0, 10)) -> list:
         """
@@ -67,7 +68,7 @@ class OriAnalyzer():
         Returns:
         - list: List of unique k-mers.
         """
-        return generate_k_mers(sequence=sequence, k_mer_length=k_mer_length, seq_range=seq_range)
+        return generate_k_mers_func(sequence=sequence, k_mer_length=k_mer_length, seq_range=seq_range)
     
     def reverse_complement(self, sequence: str) -> str:
         """
@@ -79,7 +80,7 @@ class OriAnalyzer():
         Returns:
         - str: The reverse complement of the input sequence.
         """
-        return reverse_complement(sequence=sequence)
+        return rev_complement_func(sequence=sequence)
     
     def pattern_frequency(self, sequence: str, pattern_length: int, threshold: int) -> dict:
         """
@@ -94,7 +95,7 @@ class OriAnalyzer():
         Returns:
         - dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
         """
-        return approximate_pattern_frequency(sequence=sequence, pattern_length=pattern_length, threshold=threshold)
+        return pattern_freq_func(sequence=sequence, pattern_length=pattern_length, threshold=threshold)
     
     def most_frequent_patterns(self, frequency_dict: dict) -> list:
         """
@@ -106,7 +107,7 @@ class OriAnalyzer():
         Returns:
         - list: A list containing the most frequent patterns.
         """
-        return most_frequent_patterns(frequency_dict=frequency_dict)
+        return most_frequent_func(frequency_dict=frequency_dict)
 
     def frequency_merge(self, frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
         """
@@ -119,4 +120,4 @@ class OriAnalyzer():
         Returns:
         - dict: A dictionary containing the merged pattern frequencies.
         """
-        return frequency_merge(frequency_dict_1=frequency_dict_1, frequency_dict_2=frequency_dict_2)
+        return merge_func(frequency_dict_1=frequency_dict_1, frequency_dict_2=frequency_dict_2)
