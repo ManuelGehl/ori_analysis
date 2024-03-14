@@ -1,4 +1,4 @@
-from functions import hamming_distance
+from functions.hamming_distance import hamming_distance
 
 def generate_direct_neighbours(sequence: str) -> list:
     """
