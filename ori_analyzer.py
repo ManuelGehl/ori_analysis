@@ -7,9 +7,11 @@ from functions.pattern_frequency import frequency_merge as merge_func, most_freq
 class OriAnalyzer():
     
     def __init__(self):
-        pass
+        self.genome = None
+        self.skew_array = None
+        self.frequency_dict = None
     
-    def read_sequence(self, input_path: str) -> str:
+    def read_sequence(self, input_path: str) -> None:
         """
         Reads a DNA sequence from the specified input file using the read_sequence function.
 
@@ -19,9 +21,9 @@ class OriAnalyzer():
         Returns:
             str: DNA sequence string.
         """
-        return read_seq_func(input_path=input_path)
+        self.genome = read_seq_func(input_path=input_path)
     
-    def calculate_gc_skew(self, sequence: str):
+    def calculate_gc_skew(self) -> None:
         """
         Calculate GC skew scores for each position in the sequence.
 
@@ -31,18 +33,18 @@ class OriAnalyzer():
         Returns:
         - list: List of GC skew scores.
         """
-        return gc_skew_func(sequence=sequence)
+        self.skew_array = gc_skew_func(sequence=self.genome)
     
-    def plot_skew(self, skew_array: list) -> None:
+    def plot_skew(self) -> None:
         """
         Plot GC skew scores as a function of positions in the genome.
 
         Parameters:
         - skew_array (list): List of GC skew scores.
         """
-        plot_skew_func(skew_array=skew_array)
+        plot_skew_func(skew_array=self.skew_array)
 
-    def min_max_skew(self, skew_array: list) -> list:
+    def min_max_skew(self) -> list:
         """
         Calculate minimum and maximum values of GC skew.
 
@@ -53,11 +55,11 @@ class OriAnalyzer():
         - list: Positions where the skew is minimum.
         - list: Positions where the skew is maximum.
         """
-        return min_max_skew_func(skew_array=skew_array)
+        return min_max_skew_func(skew_array=self.skew_array)
     
-    def generate_k_mers(self, sequence: str, k_mer_length: int, seq_range: tuple = (0, 10)) -> list:
+    def generate_k_mers(self, k_mer_length: int, seq_range: tuple = (0, 10)) -> list:
         """
-        Generate unique k-mers from a specified range of a DNA sequence.
+        Generate unique k-mers from a specified range of the genomic DNA sequence.
 
         Parameters:
         - sequence (str): The input DNA sequence.
@@ -68,7 +70,7 @@ class OriAnalyzer():
         Returns:
         - list: List of unique k-mers.
         """
-        return generate_k_mers_func(sequence=sequence, k_mer_length=k_mer_length, seq_range=seq_range)
+        return generate_k_mers_func(sequence=self.genome, k_mer_length=k_mer_length, seq_range=seq_range)
     
     def reverse_complement(self, sequence: str) -> str:
         """
@@ -81,7 +83,7 @@ class OriAnalyzer():
         - str: The reverse complement of the input sequence.
         """
         return rev_complement_func(sequence=sequence)
-    
+    # To do: check that sequence, it does not perfectly fit to analzyer
     def pattern_frequency(self, sequence: str, pattern_length: int, threshold: int) -> dict:
         """
         Determines the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
