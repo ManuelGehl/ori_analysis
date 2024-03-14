@@ -1,5 +1,6 @@
 from functions.sequence import read_sequence
 from functions.gc_skew import calculate_gc_skew, plot_skew, min_max_skew
+from functions.generate_k_mers import generate_k_mers
 
 class OriAnalyzer():
     
@@ -51,3 +52,18 @@ class OriAnalyzer():
         - list: Positions where the skew is maximum.
         """
         return min_max_skew(skew_array=skew_array)
+    
+    def generate_k_mers(self, sequence: str, k_mer_length: int, seq_range: tuple = (0, 10)) -> list:
+        """
+        Generate unique k-mers from a specified range of a DNA sequence.
+
+        Parameters:
+        - sequence (str): The input DNA sequence.
+        - k_mer_length (int): Length of k-mers to generate.
+        - seq_range (tuple, optional): A tuple representing the range of the sequence to consider.
+                                        Default is (0, 10).
+
+        Returns:
+        - list: List of unique k-mers.
+        """
+        return generate_k_mers(sequence=sequence, k_mer_length=k_mer_length, seq_range=seq_range)
