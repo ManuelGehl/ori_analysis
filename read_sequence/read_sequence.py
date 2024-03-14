@@ -29,4 +29,6 @@ def read_sequence(input_path: str) -> str:
                 if not line.startswith(">"):
                     line.upper()
                     sequence += line
+        
+        return sequence
                     
