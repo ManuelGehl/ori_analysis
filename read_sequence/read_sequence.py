@@ -27,7 +27,7 @@ def read_sequence(input_path: str) -> str:
             for line in file:
                 line = line.strip()
                 if not line.startswith(">"):
-                    line.upper()
+                    line = line.upper()
                     sequence += line
         
         return sequence
