@@ -98,19 +98,18 @@ class OriAnalyzer():
         """
         return neigbourhood_func(k_mers=k_mers, distance=distance)
 
-    def pattern_frequency(self, seq_range: tuple, pattern_length: int, neighbourhood_dict: dict) -> dict:
+    def pattern_frequency(self, seq_range: tuple, neighbourhood_dict: dict) -> dict:
         """
         Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 
         Parameters:
             sequence (str): The input DNA sequence.
-            pattern_length (int): The length of the patterns to be considered.
             neighbourhood_dict (dict): A dictionary containing k-mers as keys and their corresponding d-neighbourhoods as values.
 
         Returns:
             dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
         """
-        return pattern_freq_func(sequence=self.genome, seq_range=seq_range, pattern_length=pattern_length, neighbourhood_dict=neighbourhood_dict)
+        return pattern_freq_func(sequence=self.genome, seq_range=seq_range, neighbourhood_dict=neighbourhood_dict)
     
     def most_frequent_patterns(self, frequency_dict: dict) -> list:
         """
