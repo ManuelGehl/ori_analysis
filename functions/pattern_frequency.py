@@ -38,7 +38,7 @@ def pattern_frequency(sequence: str, seq_range: tuple, neighbourhood_dict: dict)
             if current_window in neighbourhood:
                 frequency_dict.setdefault(k_mer, 0)
                 # If neighbour occured, increase by 1
-                frequency_dict[current_window] += 1
+                frequency_dict[k_mer] += 1
 
     return frequency_dict
 
