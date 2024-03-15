@@ -97,23 +97,20 @@ class OriAnalyzer():
         - dict: A dictionary where keys are k-mers and values are their d-neighbourhoods.
         """
         return neigbourhood_func(k_mers=k_mers, distance=distance)
-    
-    #%% 
-    # To do: check that sequence, it does not perfectly fit to analzyer
-    def pattern_frequency(self, sequence: str, pattern_length: int, threshold: int) -> dict:
+
+    def pattern_frequency(self, seq_range: tuple, pattern_length: int, neighbourhood_dict: dict) -> dict:
         """
-        Determines the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
-        Pattern occurences are also count for similar (within threshold Hamming distance) but not identical patterns.
+        Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 
         Parameters:
-        - sequence (str): The input DNA sequence.
-        - pattern_length (int): The length of the patterns to be considered.
-        - threshold (int): The Hamming distance threshold for pattern matching.
+            sequence (str): The input DNA sequence.
+            pattern_length (int): The length of the patterns to be considered.
+            neighbourhood_dict (dict): A dictionary containing k-mers as keys and their corresponding d-neighbourhoods as values.
 
         Returns:
-        - dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
+            dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
         """
-        return pattern_freq_func(sequence=sequence, pattern_length=pattern_length, threshold=threshold)
+        return pattern_freq_func(sequence=self.genome, seq_range=seq_range, pattern_length=pattern_length, neighbourhood_dict=neighbourhood_dict)
     
     def most_frequent_patterns(self, frequency_dict: dict) -> list:
         """
