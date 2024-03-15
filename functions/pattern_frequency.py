@@ -1,18 +1,17 @@
 from functions.hamming_distance import hamming_distance
 from functions.neighbourhood import generate_d_neighbourhood
 
-def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold: int) -> dict:
+def pattern_frequency(sequence: str, pattern_length: int, neighbourhood_dict: dict) -> dict:
     """
-    Determines the frequency of patterns in a DNA sequence within a given Hamming distance threshold.
-    Pattern occurences are also count for similar (within threshold Hamming distance) but not identical patterns.
+    Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 
     Parameters:
-    - sequence (str): The input DNA sequence.
-    - pattern_length (int): The length of the patterns to be considered.
-    - threshold (int): The Hamming distance threshold for pattern matching.
+        sequence (str): The input DNA sequence.
+        pattern_length (int): The length of the patterns to be considered.
+        neighbourhood_dict (dict): A dictionary containing k-mers as keys and their corresponding d-neighbourhoods as values.
 
     Returns:
-    - dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
+        dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
     """
     # Initialize frequency dictionary
     frequency_dict = {}
@@ -24,18 +23,12 @@ def approximate_pattern_frequency(sequence: str, pattern_length: int, threshold:
     for pos in range(scanning_range):
         # Extract the current window
         current_window = sequence[pos:pos + pattern_length]
-        # Generate d-neighbourhood of current window
-        neighbourhood = generate_d_neighbourhood(sequence=current_window, distance=threshold)
-        
-        # Calculate hamming distance between current_window and every neighbour from the neighbourhood
-        for neighbour in neighbourhood:
-            hamming_dist = hamming_distance(current_window, neighbour)
-            # If Hamming distance is below threshold include neighbour in dictionary
-            if hamming_dist <= threshold:
-                # If current_window not in dictionary, initialize with key = 0
-                frequency_dict.setdefault(neighbour, 0)
+        # Add 1 to each k_mer which has current_window in d-neighbourhood
+        for k_mer, neighbourhood in neighbourhood_dict.items():
+            if current_window in neighbourhood:
+                frequency_dict.setdefault(k_mer, 0)
                 # If neighbour occured, increase by 1
-                frequency_dict[neighbour] += 1
+                frequency_dict[current_window] += 1
 
     return frequency_dict
 
