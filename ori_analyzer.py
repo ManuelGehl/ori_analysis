@@ -1,8 +1,9 @@
-from functions.sequence import read_sequence as read_seq_func
+from functions.sequence import read_sequence as read_seq_func, reverse_complement as rev_complement_func
 from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as plot_skew_func, min_max_skew as min_max_skew_func
 from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
-from functions.pattern_frequency import reverse_complement as rev_complement_func, approximate_pattern_frequency as pattern_freq_func
+from functions.pattern_frequency import pattern_frequency as pattern_freq_func
 from functions.pattern_frequency import frequency_merge as merge_func, most_frequent_patterns as most_frequent_func
+from functions.neighbourhood import neighbourhood_dictionary as neigbourhood_func
 
 class OriAnalyzer():
     
@@ -83,6 +84,21 @@ class OriAnalyzer():
         - str: The reverse complement of the input sequence.
         """
         return rev_complement_func(sequence=sequence)
+    
+    def neighbourhood_dictionary(self, k_mers: list, distance: int) -> dict:
+        """
+        Generates a dictionary of k-mers and their corresponding d-neighbourhoods.
+
+        Parameters:
+        - k_mers (list): A list of k-mers.
+        - distance (int): The maximum Hamming distance for generating d-neighbourhoods.
+
+        Returns:
+        - dict: A dictionary where keys are k-mers and values are their d-neighbourhoods.
+        """
+        return neigbourhood_func(k_mers=k_mers, distance=distance)
+    
+    #%% 
     # To do: check that sequence, it does not perfectly fit to analzyer
     def pattern_frequency(self, sequence: str, pattern_length: int, threshold: int) -> dict:
         """
