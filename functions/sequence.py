@@ -31,4 +31,26 @@ def read_sequence(input_path: str) -> str:
                     sequence += line
         
         return sequence
-                    
+    
+def reverse_complement(sequence: str) -> str:
+    """
+    Generates the reverse complement of a DNA sequence.
+
+    Parameters:
+    - sequence (str): The input DNA sequence.
+
+    Returns:
+    - str: The reverse complement of the input sequence.
+    """
+    # Return sequence
+    sequence = sequence[::-1]
+    
+    # Define mapping dictionary
+    mapping_dict = {"A": "T",
+                    "T": "A",
+                    "G": "C",
+                    "C": "G"}
+    # Map characters in sequence
+    complement_seq = [mapping_dict[char] for char in sequence]
+    
+    return "".join(complement_seq)          
