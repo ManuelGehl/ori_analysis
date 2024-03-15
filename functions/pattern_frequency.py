@@ -83,12 +83,5 @@ def frequency_merge(frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
     
     return merged_frequencies
 
-#rev_comp = reverse_complement(sequence)
-#freq1 = approximate_pattern_frequency(sequence, 7, 3)
-#freq2 = approximate_pattern_frequency(rev_comp, 7, 3)
-#merged = frequency_merge(freq1, freq2)
-#patts = most_frequent_patterns(frequency_dict=merged)
-#print(patts)
-
 
 
