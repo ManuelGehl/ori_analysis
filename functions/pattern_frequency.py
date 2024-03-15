@@ -1,13 +1,12 @@
 from functions.hamming_distance import hamming_distance
 from functions.neighbourhood import generate_d_neighbourhood
 
-def pattern_frequency(sequence: str, seq_range: tuple, pattern_length: int, neighbourhood_dict: dict) -> dict:
+def pattern_frequency(sequence: str, seq_range: tuple, neighbourhood_dict: dict) -> dict:
     """
     Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 
     Parameters:
         sequence (str): The input DNA sequence.
-        pattern_length (int): The length of the patterns to be considered.
         neighbourhood_dict (dict): A dictionary containing k-mers as keys and their corresponding d-neighbourhoods as values.
 
     Returns:
@@ -15,6 +14,8 @@ def pattern_frequency(sequence: str, seq_range: tuple, pattern_length: int, neig
     """
     # Initialize frequency dictionary
     frequency_dict = {}
+    # Extract pattern length from neighbourhood dictionary
+    pattern_length = len(next(iter(neighbourhood_dict.keys())))
     # Define part of sequence to generate k-mers from
     start, stop = seq_range
     
