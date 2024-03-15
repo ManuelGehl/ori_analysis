@@ -168,13 +168,7 @@ def frequency_merge(frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
         merged_frequencies[pattern] = frequency_dict_1.get(pattern, 0) + frequency_dict_2.get(pattern, 0)
     
     return merged_frequencies
-    
-    
-sequence = "ATTATATGC"
-distance = 3
-neigh = generate_d_neighbourhood(sequence, distance)
-for elem in neigh:
-    print(elem)
+
 #rev_comp = reverse_complement(sequence)
 #freq1 = approximate_pattern_frequency(sequence, 7, 3)
 #freq2 = approximate_pattern_frequency(rev_comp, 7, 3)
