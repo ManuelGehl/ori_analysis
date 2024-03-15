@@ -64,3 +64,24 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
         neighbourhood = list(set(neighbourhood))
     
     return neighbourhood
+
+def neighbourhood_dictionary(k_mers: list, distance: int) -> dict:
+    """
+    Generates a dictionary of k-mers and their corresponding d-neighbourhoods.
+    
+    Parameters:
+    
+    - k_mers (list): A list of k-mers.
+    - distance (int): The maximum Hamming distance for generating d-neighbourhoods.
+
+    Returns:
+    
+    - dict: A dictionary where keys are k-mers and values are their d-neighbourhoods.
+    """
+    # Initialize empty neighbourhood dictionary
+    neighbourhood_dict = {}
+    # Iterate over all k-mers, use them as keys and generate the corresponding d-neighbourhood
+    for k_mer in k_mers:
+        neighbourhood_dict[k_mer] = generate_d_neighbourhood(sequence=k_mer, distance=distance)
+        
+    return neighbourhood_dict
