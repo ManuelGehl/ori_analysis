@@ -1,7 +1,7 @@
 from functions.hamming_distance import hamming_distance
 from functions.neighbourhood import generate_d_neighbourhood
 
-def pattern_frequency(sequence: str, pattern_length: int, neighbourhood_dict: dict) -> dict:
+def pattern_frequency(sequence: str, seq_range: tuple, pattern_length: int, neighbourhood_dict: dict) -> dict:
     """
     Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 
@@ -15,14 +15,23 @@ def pattern_frequency(sequence: str, pattern_length: int, neighbourhood_dict: di
     """
     # Initialize frequency dictionary
     frequency_dict = {}
+    # Define part of sequence to generate k-mers from
+    start, stop = seq_range
+    
+    # Check sequence range values
+    if not 0 <= start < len(sequence) or not 0 <= stop < len(sequence) or not start < stop:
+        raise ValueError("Invalid sequence range. Please provide a valid range within the length of the sequence.")
+    
+    # Define slice of sequence from which k-mers will be generated
+    sequence_part = sequence[start:stop + 1]
     
     # Define scanning range
-    scanning_range = len(sequence) - pattern_length + 1
+    scanning_range = len(sequence_part) - pattern_length + 1
 
     # Slide a window over the sequence
     for pos in range(scanning_range):
         # Extract the current window
-        current_window = sequence[pos:pos + pattern_length]
+        current_window = sequence_part[pos:pos + pattern_length]
         # Add 1 to each k_mer which has current_window in d-neighbourhood
         for k_mer, neighbourhood in neighbourhood_dict.items():
             if current_window in neighbourhood:
