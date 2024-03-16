@@ -1,4 +1,4 @@
-from functions.sequence import read_sequence as read_seq_func, reverse_complement as rev_complement_func
+from functions.sequence import read_sequence as read_seq_func, reverse_complement
 from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as plot_skew_func, min_max_skew as min_max_skew_func
 from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
 from functions.pattern_frequency import pattern_frequency as pattern_freq_func
@@ -73,21 +73,10 @@ class OriAnalyzer():
         """
         return generate_k_mers_func(sequence=self.genome, k_mer_length=k_mer_length, seq_range=seq_range)
     
-    def reverse_complement(self, sequence: str) -> str:
-        """
-        Generates the reverse complement of a DNA sequence.
-
-        Parameters:
-        - sequence (str): The input DNA sequence.
-
-        Returns:
-        - str: The reverse complement of the input sequence.
-        """
-        return rev_complement_func(sequence=sequence)
-    
-    def neighbourhood_dictionary(self, k_mers: list, distance: int) -> dict:
+    def neighbourhood_dictionary(self, k_mers: list, distance: int, reverse_complement: bool = False) -> dict:
         """
         Generates a dictionary of k-mers and their corresponding d-neighbourhoods.
+        
 
         Parameters:
         - k_mers (list): A list of k-mers.
@@ -122,16 +111,3 @@ class OriAnalyzer():
         - list: A list containing the most frequent patterns.
         """
         return most_frequent_func(frequency_dict=frequency_dict)
-
-    def frequency_merge(self, frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
-        """
-        Merges two dictionaries of pattern frequencies.
-
-        Parameters:
-        - frequency_dict_1 (dict): The first dictionary of pattern frequencies.
-        - frequency_dict_2 (dict): The second dictionary of pattern frequencies.
-
-        Returns:
-        - dict: A dictionary containing the merged pattern frequencies.
-        """
-        return merge_func(frequency_dict_1=frequency_dict_1, frequency_dict_2=frequency_dict_2)
