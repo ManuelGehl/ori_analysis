@@ -1,6 +1,3 @@
-from functions.hamming_distance import hamming_distance
-from functions.neighbourhood import generate_d_neighbourhood
-
 def pattern_frequency(sequence: str, seq_range: tuple, neighbourhood_dict: dict) -> dict:
     """
     Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
@@ -42,7 +39,7 @@ def pattern_frequency(sequence: str, seq_range: tuple, neighbourhood_dict: dict)
 
     return frequency_dict
 
-def most_frequent_patterns(frequency_dict: dict) -> list:
+def most_frequent_patterns(frequency_dict: dict) -> tuple:
     """
     Finds the most frequent patterns in a dictionary of pattern frequencies.
 
@@ -50,7 +47,7 @@ def most_frequent_patterns(frequency_dict: dict) -> list:
     - frequency_dict (dict): A dictionary where keys are patterns and values are their frequencies.
 
     Returns:
-    - list: A list containing the most frequent patterns.
+    - tuple: Number of occurences, a list containing the most frequent patterns.
     """
     # Determine maximum occurence in dictionary
     max_value = max(frequency_dict.values())
@@ -60,28 +57,4 @@ def most_frequent_patterns(frequency_dict: dict) -> list:
         if frequency == max_value:
             patterns.append(pattern)
     
-    return patterns
-
-def frequency_merge(frequency_dict_1: dict, frequency_dict_2: dict) -> dict:
-    """
-    Merges two dictionaries of pattern frequencies.
-
-    Parameters:
-    - frequency_dict_1 (dict): The first dictionary of pattern frequencies.
-    - frequency_dict_2 (dict): The second dictionary of pattern frequencies.
-
-    Returns:
-    - dict: A dictionary containing the merged pattern frequencies.
-    """
-    # Initialzie empty dictionary
-    merged_frequencies = {}
-    # Loop trough the union of patterns
-    for pattern in set(frequency_dict_1) | set(frequency_dict_2):
-        # If the pattern exists in both dictionaries, calculate sum
-        # If the pattern exists in only one dictionary, keep orinal count
-        merged_frequencies[pattern] = frequency_dict_1.get(pattern, 0) + frequency_dict_2.get(pattern, 0)
-    
-    return merged_frequencies
-
-
-
+    return max_value, patterns
