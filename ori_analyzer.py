@@ -1,8 +1,7 @@
 from functions.sequence import read_sequence as read_seq_func, reverse_complement as rev_comp_func
 from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as plot_skew_func, min_max_skew as min_max_skew_func
 from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
-from functions.pattern_frequency import pattern_frequency as pattern_freq_func
-from functions.pattern_frequency import frequency_merge as merge_func, most_frequent_patterns as most_frequent_func
+from functions.pattern_frequency import pattern_frequency as pattern_freq_func, most_frequent_patterns as most_frequent_func
 from functions.neighbourhood import neighbourhood_dictionary as neighbourhood_func
 
 class OriAnalyzer():
@@ -10,7 +9,6 @@ class OriAnalyzer():
     def __init__(self):
         self.genome = None
         self.skew_array = None
-        self.frequency_dict = None
     
     def read_sequence(self, input_path: str) -> None:
         """
