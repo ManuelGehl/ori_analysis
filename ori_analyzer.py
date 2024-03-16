@@ -3,7 +3,7 @@ from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as pl
 from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
 from functions.pattern_frequency import pattern_frequency as pattern_freq_func
 from functions.pattern_frequency import frequency_merge as merge_func, most_frequent_patterns as most_frequent_func
-from functions.neighbourhood import neighbourhood_dictionary as neigbourhood_func
+from functions.neighbourhood import neighbourhood_dictionary as neighbourhood_func
 
 class OriAnalyzer():
     
@@ -76,17 +76,39 @@ class OriAnalyzer():
     def neighbourhood_dictionary(self, k_mers: list, distance: int, reverse_complement: bool = False) -> dict:
         """
         Generates a dictionary of k-mers and their corresponding d-neighbourhoods.
-        
+
+        This method takes a list of k-mers and generates a dictionary where each k-mer is paired with its d-neighbourhood,
+        defined as the set of all k-mers that can be formed by changing at most 'distance' positions in the original k-mer.
 
         Parameters:
-        - k_mers (list): A list of k-mers.
+        - k_mers (list): A list of k-mers (strings).
         - distance (int): The maximum Hamming distance for generating d-neighbourhoods.
+        - reverse_complement (bool, optional): Flag indicating whether to include reverse complements of k-mers in the
+        neighbourhoods. Defaults to False.
 
         Returns:
-        - dict: A dictionary where keys are k-mers and values are their d-neighbourhoods.
-        """
-        return neigbourhood_func(k_mers=k_mers, distance=distance)
+        - dict: A dictionary where keys are k-mers and values are lists of k-mers representing their d-neighbourhoods.
+        If reverse_complement is True, each k-mer's value also includes its d-neighbourhoods' reverse complements.
 
+        Example:
+        Given k_mers = ['ACGT', 'ATGC'] and distance = 1:
+        neighbourhood_dictionary(k_mers, distance) returns {'ACGT': ['ACGT', 'ACTT', 'AGGT', 'ACCT', 'ACGG'],
+                                                            'ATGC': ['ATGC', 'AGGC', 'AAGC', 'ATCC', 'TTGC']}
+        """
+        neighbourhood = neighbourhood_func(k_mers=k_mers, distance=distance)
+        
+        if reverse_complement:
+            # Initialize empty neighbourhood dictionary
+            neighbourhood_rev_comp = {}
+            # Iterate over all neighbourhood lists and add the reverse_complement sequences to each
+            for k_mer, neighbours in neighbourhood.items():
+                rev_comp = [reverse_complement(neighbour) for neighbour in neighbours]
+                neighbourhood_rev_comp[k_mer] = list(set(neighbours + rev_comp))
+            return neighbourhood_rev_comp
+        
+        else:
+            return neighbourhood
+                    
     def pattern_frequency(self, seq_range: tuple, neighbourhood_dict: dict) -> dict:
         """
         Determines the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
