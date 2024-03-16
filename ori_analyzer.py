@@ -1,4 +1,4 @@
-from functions.sequence import read_sequence as read_seq_func, reverse_complement
+from functions.sequence import read_sequence as read_seq_func, reverse_complement as rev_comp_func
 from functions.gc_skew import calculate_gc_skew as gc_skew_func, plot_skew as plot_skew_func, min_max_skew as min_max_skew_func
 from functions.generate_k_mers import generate_k_mers as generate_k_mers_func
 from functions.pattern_frequency import pattern_frequency as pattern_freq_func
@@ -102,7 +102,7 @@ class OriAnalyzer():
             neighbourhood_rev_comp = {}
             # Iterate over all neighbourhood lists and add the reverse_complement sequences to each
             for k_mer, neighbours in neighbourhood.items():
-                rev_comp = [reverse_complement(neighbour) for neighbour in neighbours]
+                rev_comp = [rev_comp_func(neighbour) for neighbour in neighbours]
                 neighbourhood_rev_comp[k_mer] = list(set(neighbours + rev_comp))
             return neighbourhood_rev_comp
         
