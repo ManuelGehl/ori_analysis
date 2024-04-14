@@ -38,3 +38,8 @@ TTATCCACA
 GTTATCCAC
 GTGGATAAC
 ```
+## Example analysis
+
+The Jupyter notebook contains an example analysis of the *E. coli* genome. The GC plot (Fig. 1) exhibits two distinct turning points, aiding in the identification of the OriC region. The determination of 9-mers frequency, along with their 1-d neighborhood, from the minimum point to 1000 base pairs downstream, resulted in a list where the DnaA box sequence in *E. coli*, **TTATCCACA**, along with its reverse complement, **TGTGGATAA**, is prominently featured.
+
+
