@@ -17,9 +17,13 @@ ori_analyzer is a Python package designed for analyzing single DNA sequences and
 
 The [Jupyter notebook](https://github.com/ManuelGehl/ori_analysis/blob/master/example_analysis.ipynb) contains an example analysis of the *E. coli* genome. The GC plot (Fig. 1) exhibits two distinct turning points, aiding in the identification of the OriC region. The determination of 9-mers frequency, along with their 1-d neighborhood, from the minimum point to 1000 base pairs downstream, resulted in a list where the DnaA box sequence in *E. coli*, **TTATCCACA**, along with its reverse complement, **TGTGGATAA**, is prominently featured.
 
+<img src="https://github.com/ManuelGehl/ori_analysis/blob/master/example_gc_plot.png?raw=true" height=400>
+
+***Figure 1:*** *The GC skew is plotted across the relative genomic position of the E. coli genome.*
+
 ## ori_pipeline
 
-The `ori_pipeline` script provides a simple default pipeline for analyzing genome sequences to identify the origin of replication (OriC). It assumes the following prerequisites:
+The `ori_pipeline` script provides a simple default pipeline for analyzing genome sequences to identify putative DnaA boxes. It assumes the following prerequisites:
 
 - The genome sequence is stored as a plain text file named "genome.txt".
 - The analyzed k-mer length is set to 9, which is the default for *E. coli*.
@@ -42,3 +46,7 @@ TTATCCACA
 GTTATCCAC
 GTGGATAAC
 ```
+
+## Reference
+
+This project draws inspiration from the book "Bioinformatics Algorithms" by Phillip Compeau & Pavel Pevzner, as well as the associated ROSALIND challenges.
