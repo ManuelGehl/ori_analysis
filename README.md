@@ -13,6 +13,10 @@ ori_analyzer is a Python package designed for analyzing single DNA sequences and
 - **Determining Pattern Frequency:** Determine the frequency of patterns in a DNA sequence based on their presence in a neighborhood dictionary.
 - **Finding Most Frequent Patterns:** Identify the most frequent patterns in a dictionary of pattern frequencies.
 
+## Example analysis
+
+The [Jupyter notebook](https://github.com/ManuelGehl/ori_analysis/blob/master/example_analysis.ipynb) contains an example analysis of the *E. coli* genome. The GC plot (Fig. 1) exhibits two distinct turning points, aiding in the identification of the OriC region. The determination of 9-mers frequency, along with their 1-d neighborhood, from the minimum point to 1000 base pairs downstream, resulted in a list where the DnaA box sequence in *E. coli*, **TTATCCACA**, along with its reverse complement, **TGTGGATAA**, is prominently featured.
+
 ## ori_pipeline
 
 The `ori_pipeline` script provides a simple default pipeline for analyzing genome sequences to identify the origin of replication (OriC). It assumes the following prerequisites:
@@ -38,8 +42,3 @@ TTATCCACA
 GTTATCCAC
 GTGGATAAC
 ```
-## Example analysis
-
-The Jupyter notebook contains an example analysis of the *E. coli* genome. The GC plot (Fig. 1) exhibits two distinct turning points, aiding in the identification of the OriC region. The determination of 9-mers frequency, along with their 1-d neighborhood, from the minimum point to 1000 base pairs downstream, resulted in a list where the DnaA box sequence in *E. coli*, **TTATCCACA**, along with its reverse complement, **TGTGGATAA**, is prominently featured.
-
-
