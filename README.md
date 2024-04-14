@@ -1,6 +1,6 @@
 # ori_analyzer
 
-ori_analyzer is a Python package designed for analyzing single DNA sequences and identifying potential origin of replication (ori) regions. This package offers a range of functionalities to facilitate genomic analysis, including calculating GC skew, generating k-mers, determining pattern frequencies, and finding the most frequent patterns.
+ori_analyzer is a Python package designed for analyzing single DNA sequences and identifying potential origin of replication (ori) regions with their respective DnaA boxes. This package offers a range of functionalities to facilitate genomic analysis, including calculating GC skew, generating k-mers, determining pattern frequencies, and finding the most frequent patterns.
 
 ## Summary of Features:
 
