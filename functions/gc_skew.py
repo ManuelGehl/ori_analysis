@@ -11,6 +11,14 @@ def calculate_gc_skew(sequence: str) -> list:
     Returns:
     - list: List of GC skew scores.
     """
+    
+    # Check that sequence is not empty or none
+    if sequence is None or len(sequence) == 0:
+        raise ValueError("Empty sequence")
+    # Check for correct data type
+    if not isinstance(sequence, str):
+        raise ValueError("Invalid input type. Please provide a valid sequence.")
+    
     # Initialize skew skew_array with 0
     skew_array = [0]
     
@@ -35,6 +43,14 @@ def plot_skew(skew_array: list) -> None:
     Parameters:
     - skew_array (list): List of GC skew scores.
     """
+    
+    # Check that skew array is not empty or none
+    if skew_array is None or len(skew_array) == 0:
+        raise ValueError("Empty skew_array")
+    # Check for data type
+    if not isinstance(skew_array, list):
+        raise ValueError("Invalid input type. Please provide a valid skew_array.")
+    
     # Plot GC skew as function of positions in genome
     sns.set_style("ticks")
     plt.xlabel("Position")
@@ -54,6 +70,13 @@ def min_max_skew(skew_array: list) -> list:
     - list: Positions where the skew is minimum.
     - list: Positions where the skew is maximum.
     """
+    # Check that skew array is not empty or none
+    if skew_array is None or len(skew_array) == 0:
+        raise ValueError("Empty skew_array")
+    # Check for data type
+    if not isinstance(skew_array, list):
+        raise ValueError("Invalid input type. Please provide a valid skew_array.")
+    
     # Calculate minimum and maximum values of GC skew
     minimum_skew = min(skew_array)
     maximum_skew = max(skew_array)

@@ -12,6 +12,14 @@ def generate_direct_neighbours(sequence: str) -> list:
     >>> generate_direct_neighbours(sequence="ATG")
     ['ATG', 'TTG', 'GTG', 'CTG', 'AAG', 'AGG', 'ACG', 'ATA', 'ATT', 'ATC']
     """
+    
+    # Check that sequence is not empty or none
+    if sequence is None or len(sequence) == 0:
+        raise ValueError("Empty sequence")
+    # Check for correct data type
+    if not isinstance(sequence, str):
+        raise ValueError("Invalid input type. Please provide a valid sequence.")
+    
     nucleotide_list = ["A", "T", "G", "C"]
     # Initialize direct neighbours with sequence
     direct_neighbours = [sequence]
@@ -28,7 +36,7 @@ def generate_direct_neighbours(sequence: str) -> list:
             modified_sequence = ''.join(split_sequence)
             direct_neighbours.append(modified_sequence)
     
-    return direct_neighbours
+    return sorted(direct_neighbours)
 
 def generate_d_neighbourhood(sequence: str, distance: int) -> list:
     """
@@ -45,6 +53,17 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
     >> generate_d_neighbourhood(sequence="AT")
     ['AG', 'CG', 'GA', 'TC', 'GG', 'AA', 'AT', 'GT', 'CT', 'CC', 'AC', 'GC', 'TG', 'CA', 'TA', 'TT']
     """
+    
+    # Check that sequence is not empty or none
+    if sequence is None or len(sequence) == 0:
+        raise ValueError("Empty sequence")
+    # Check for correct data type
+    if not isinstance(sequence, str) or not isinstance(distance, int):
+        raise ValueError("Invalid input types. Please provide a valid sequence or distance.")
+    # Check for non-negative distances
+    if distance < 0:
+        raise ValueError("Negative distance.")
+    
     # Initialize neighbourhood
     neighbourhood = [sequence]
     if distance == 0:
@@ -63,7 +82,7 @@ def generate_d_neighbourhood(sequence: str, distance: int) -> list:
         # Remove duplicates
         neighbourhood = list(set(neighbourhood))
     
-    return neighbourhood
+    return sorted(neighbourhood)
 
 def neighbourhood_dictionary(k_mers: list, distance: int) -> dict:
     """
@@ -78,6 +97,16 @@ def neighbourhood_dictionary(k_mers: list, distance: int) -> dict:
     
     - dict: A dictionary where keys are k-mers and values are their d-neighbourhoods.
     """
+    # Check that k_mers is not empty or none
+    if k_mers is None or len(k_mers) == 0:
+        raise ValueError("Empty k_mers")
+    # Check for correct data type
+    if not isinstance(k_mers, list) or not isinstance(distance, int):
+        raise ValueError("Invalid input types. Please provide a valid list of k-mers or distance.")
+    # Check for non-negative distances
+    if distance < 0:
+        raise ValueError("Negative distance.")
+    
     # Initialize empty neighbourhood dictionary
     neighbourhood_dict = {}
     # Iterate over all k-mers, use them as keys and generate the corresponding d-neighbourhood

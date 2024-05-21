@@ -41,4 +41,4 @@ def generate_k_mers(sequence: str, k_mer_length: int, seq_range: tuple = (0, 10)
     # Convert set to list
     k_mer_list = list(k_mer_set)
     
-    return k_mer_list
+    return sorted(k_mer_list)

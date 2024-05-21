@@ -9,6 +9,18 @@ def pattern_frequency(sequence: str, seq_range: tuple, neighbourhood_dict: dict)
     Returns:
         dict: A dictionary where keys are patterns and values are their frequencies in the sequence.
     """
+    
+    # Check for correct data types
+    if not isinstance(sequence, str) or not isinstance(seq_range, tuple) or not isinstance(neighbourhood_dict, dict):
+        raise ValueError("Input sequence as string, seq_range as tuple and neighbourhood_dict as dictionary.")
+    # Check that no input is empty
+    if len(sequence) == 0:
+        raise ValueError("Empty sequence.")
+    if len(seq_range) == 0:
+        raise ValueError("Empty sequence range.")
+    if len(neighbourhood_dict) == 0:
+        raise ValueError("Empty neighbourhood dictionary.")
+    
     # Initialize frequency dictionary
     frequency_dict = {}
     # Extract pattern length from neighbourhood dictionary
@@ -49,6 +61,14 @@ def most_frequent_patterns(frequency_dict: dict) -> tuple:
     Returns:
     - tuple: Number of occurences, a list containing the most frequent patterns.
     """
+    
+    # Check for correct data types
+    if not isinstance(frequency_dict, dict):
+        raise ValueError("Input frequency_dict as dictionary.")
+    # Check that no input is empty
+    if len(frequency_dict) == 0:
+        raise ValueError("Empty neighbourhood dictionary.")
+    
     # Determine maximum occurence in dictionary
     max_value = max(frequency_dict.values())
     patterns = []

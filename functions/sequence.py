@@ -14,6 +14,7 @@ def read_sequence(input_path: str) -> str:
         Returns:
             str: DNA sequence string.
         """
+        
         # Check if file exists
         if not os.path.exists(input_path):
             raise FileNotFoundError(f"Input file not found: {input_path}")
@@ -42,6 +43,14 @@ def reverse_complement(sequence: str) -> str:
     Returns:
     - str: The reverse complement of the input sequence.
     """
+    
+    # Check if sequence is not empty
+    if len(sequence) == 0:
+        raise ValueError("Empty sequence.")
+    # Check that sequence is a string
+    if not isinstance(sequence, str):
+        raise ValueError("Provide sequence as string.")
+    
     # Return sequence
     sequence = sequence[::-1]
     
